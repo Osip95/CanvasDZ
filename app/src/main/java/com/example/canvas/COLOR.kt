@@ -11,7 +11,8 @@ enum class COLOR(
     RED(R.color.purple_500),
     BLUE(R.color.purple_700),
     GREEN(R.color.purple_200),
-    PINK(R.color.teal_700);
+    PINK(R.color.teal_700),
+    SOME_COLOR(R.color.some_color);
 
 
     companion object {
