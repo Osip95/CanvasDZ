@@ -9,7 +9,7 @@ fun <T> AbsDelegationAdapter<T>.setData(data: T) {
     notifyDataSetChanged()
 }
 
-fun RecyclerView.setAdapterAndCleanupOnDetachFromWindow(recyclerViewAdapter: RecyclerView.Adapter<*>) {
+fun RecyclerView.setAdapterAndCleanupOnDetachFromWindow(recyclerViewAdapter: RecyclerView.Adapter<*>) { // функция расширения для уствновки адаптера
     adapter = recyclerViewAdapter
     addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
         override fun onViewDetachedFromWindow(v: View?) {

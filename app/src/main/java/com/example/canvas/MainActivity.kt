@@ -8,18 +8,18 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    companion object {
+    companion object { // констаны - индексы панелей, сделаны для наглядности
         private const val PALETTE_VIEW = 0
         private const val TOOLS_VIEW = 1
     }
     private val viewModel: CanvasViewModel by viewModel()
 
-    private var toolsList: List<ToolsLayout> = listOf()
+    private var toolsList: List<ToolsLayout> = listOf() // список панелей
 
-    private val paletteLayout: ToolsLayout by lazy { findViewById(R.id.paletteLayout) }
-    private val toolsLayout: ToolsLayout by lazy { findViewById(R.id.toolLayout) }
-    private val ivTools: ImageView by lazy { findViewById(R.id.ivTools) }
-    private val drawView: DrawView by lazy { findViewById(R.id.viewDraw) }
+    private val paletteLayout: ToolsLayout by lazy { findViewById(R.id.paletteLayout) } // панель с цветами
+    private val toolsLayout: ToolsLayout by lazy { findViewById(R.id.toolLayout) } // панель с инструментами
+    private val ivTools: ImageView by lazy { findViewById(R.id.ivTools) } // кнопка отображения/скрытия панели инструментов
+    private val drawView: DrawView by lazy { findViewById(R.id.viewDraw) } // холст
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,15 +43,15 @@ class MainActivity : AppCompatActivity() {
     private fun render(viewState: ViewState) {
 
         with(toolsList[PALETTE_VIEW]) {
-            render(viewState.colorList)
-            isVisible = viewState.isPaletteVisible
+            render(viewState.colorList) // добавляем данные в панель с цветами
+            isVisible = viewState.isPaletteVisible // устанавливаем видимость панели с цветами
         }
 
-        with(toolsList[TOOLS_VIEW]) {
+        with(toolsList[TOOLS_VIEW]) { // тоже самое для панели с мнструментами
             render(viewState.toolsList)
             isVisible = viewState.isToolsVisible
         }
 
-        drawView.render(viewState.canvasViewState)
+        drawView.render(viewState.canvasViewState) // устанавливаем для холста параметры размер/тип кисти,цвет
     }
 }

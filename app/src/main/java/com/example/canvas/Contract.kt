@@ -3,7 +3,7 @@ package com.example.canvas
 data class ViewState(
     val toolsList: List<ToolItem.ToolModel>,
     val colorList: List<ToolItem.ColorModel>,
-//    val sizeList: List<ToolItem.SizeModel>,
+    val sizeList: List<ToolItem.SizeModel>,
     val canvasViewState: CanvasViewState,
     val isPaletteVisible: Boolean,
 //    val isBrushSizeChangerVisible: Boolean,

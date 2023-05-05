@@ -6,6 +6,8 @@ import android.widget.ImageView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
 
+//делегаты, подтянуты из сторонней библиотеки для сокращения кода написания адаптера
+
 fun colorAdapterDelegate(
     onClick: (Int) -> Unit
 ): AdapterDelegate<List<Item>> =
