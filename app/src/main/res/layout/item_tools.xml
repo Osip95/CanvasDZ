@@ -21,7 +21,7 @@
         android:id="@+id/tvToolsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#f5f5f5"
+        android:textColor="@color/whitesmoke"
         app:layout_constraintTop_toTopOf="@id/ivTool"
         app:layout_constraintBottom_toBottomOf="@id/ivTool"
         app:layout_constraintEnd_toEndOf="@id/ivTool"
