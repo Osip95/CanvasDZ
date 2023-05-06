@@ -3,6 +3,7 @@ package com.example.canvas
 import android.graphics.PorterDuff
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
 
@@ -26,6 +27,21 @@ fun colorAdapterDelegate(
         }
     }
 
+fun sizeChangeAdapterDelegate(
+    onSizeClick: (Int) -> Unit
+): AdapterDelegate<List<Item>> = adapterDelegateLayoutContainer<ToolItem.SizeModel,Item>(
+    R.layout.item_size
+){
+
+    val tvSize: TextView = findViewById(R.id.tvSizeText)
+    bind { list ->
+      tvSize.text = item.size.value.toString()
+        itemView.setOnClickListener {
+            onSizeClick(adapterPosition)
+        }
+    }
+}
+
 fun toolsAdapterDelegate(
     onToolsClick: (Int) -> Unit
 ): AdapterDelegate<List<Item>> = adapterDelegateLayoutContainer<ToolItem.ToolModel, Item>(
@@ -33,20 +49,24 @@ fun toolsAdapterDelegate(
 ) {
 
     val ivTool: ImageView = findViewById(R.id.ivTool)
+    val tvToolsText: TextView = findViewById(R.id.tvToolsText)
 
     bind { list ->
         ivTool.setImageResource(item.type.value)
 
-//        if (itemView.tvToolsText.visibility == View.VISIBLE) {
-//            itemView.tvToolsText.visibility = View.GONE
-//        }
+        if (tvToolsText.visibility == View.VISIBLE) {
+            tvToolsText.visibility = View.GONE
+        }
 
         when (item.type) {
 
-//            TOOLS.SIZE -> {
-//                itemView.tvToolsText.visibility = View.VISIBLE
-//                itemView.tvToolsText.text = item.selectedSize.value.toString()
-//            }
+           TOOLS.SIZE -> {
+               tvToolsText.visibility = View.VISIBLE
+               tvToolsText.text = item.selectedSize.value.toString()
+
+
+           }
+
 
             TOOLS.PALETTE -> {
                 ivTool.setColorFilter(

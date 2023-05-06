@@ -12,7 +12,8 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                 size = SIZE.MEDIUM,
                 tools = TOOLS.NORMAL
             ),
-            isToolsVisible = false // видимость панели инструментов
+            isToolsVisible = false,
+            isBrushSizeChangerVisible = false  // видимость панели инструментов
         )
 
     init { // при инициализации вьюмодели устанавливаем дефолтные значения: выбора первого инструмента и  выбор черного цвета
@@ -34,6 +35,10 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                     TOOLS.PALETTE.ordinal -> { //то сравниваем с порядковым номером кнопки отвечающей за выбор цвета
                         return previousState.copy(isPaletteVisible = !previousState.isPaletteVisible)
                     }
+                    TOOLS.SIZE.ordinal -> {
+                        return previousState.copy(isBrushSizeChangerVisible = !previousState.isBrushSizeChangerVisible)
+                    }
+
                     else -> { // если нажали на кнопку которая не подразумевает появление другой плашки
 
                         val toolsList = previousState.toolsList.mapIndexed() { index, model -> // преобразовываем лист инструментов,

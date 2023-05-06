@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     companion object { // констаны - индексы панелей, сделаны для наглядности
         private const val PALETTE_VIEW = 0
         private const val TOOLS_VIEW = 1
+        private const val SIZE_VIEW = 2
     }
     private val viewModel: CanvasViewModel by viewModel()
 
@@ -21,10 +22,12 @@ class MainActivity : AppCompatActivity() {
     private val ivTools: ImageView by lazy { findViewById(R.id.ivTools) } // кнопка отображения/скрытия панели инструментов
     private val drawView: DrawView by lazy { findViewById(R.id.viewDraw) } // холст
 
+    private val sizeLayout: ToolsLayout by lazy { findViewById(R.id.sizeLayout) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        toolsList = listOf(paletteLayout, toolsLayout)
+        toolsList = listOf(paletteLayout, toolsLayout, sizeLayout)
         viewModel.viewState.observe(this, ::render)
 
         paletteLayout.setOnClickListener {
@@ -50,6 +53,11 @@ class MainActivity : AppCompatActivity() {
         with(toolsList[TOOLS_VIEW]) { // тоже самое для панели с мнструментами
             render(viewState.toolsList)
             isVisible = viewState.isToolsVisible
+        }
+
+        with(toolsList[SIZE_VIEW]){
+            render(viewState.sizeList)
+            isVisible = viewState.isBrushSizeChangerVisible
         }
 
         drawView.render(viewState.canvasViewState) // устанавливаем для холста параметры размер/тип кисти,цвет

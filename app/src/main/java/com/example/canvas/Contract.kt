@@ -6,7 +6,7 @@ data class ViewState(
     val sizeList: List<ToolItem.SizeModel>,
     val canvasViewState: CanvasViewState,
     val isPaletteVisible: Boolean,
-//    val isBrushSizeChangerVisible: Boolean,
+   val isBrushSizeChangerVisible: Boolean,
     val isToolsVisible: Boolean
 )
 

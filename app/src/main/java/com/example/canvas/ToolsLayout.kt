@@ -23,6 +23,9 @@ class ToolsLayout @JvmOverloads constructor(  //кастомная вью, па�
         },
         toolsAdapterDelegate {
             onClick(it)
+        },
+        sizeChangeAdapterDelegate{
+            onClick(it)
         }
     )
 
