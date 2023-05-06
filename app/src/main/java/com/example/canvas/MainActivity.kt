@@ -13,15 +13,14 @@ class MainActivity : AppCompatActivity() {
         private const val TOOLS_VIEW = 1
         private const val SIZE_VIEW = 2
     }
+
     private val viewModel: CanvasViewModel by viewModel()
 
     private var toolsList: List<ToolsLayout> = listOf() // список панелей
-
     private val paletteLayout: ToolsLayout by lazy { findViewById(R.id.paletteLayout) } // панель с цветами
     private val toolsLayout: ToolsLayout by lazy { findViewById(R.id.toolLayout) } // панель с инструментами
     private val ivTools: ImageView by lazy { findViewById(R.id.ivTools) } // кнопка отображения/скрытия панели инструментов
     private val drawView: DrawView by lazy { findViewById(R.id.viewDraw) } // холст
-
     private val sizeLayout: ToolsLayout by lazy { findViewById(R.id.sizeLayout) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             isVisible = viewState.isToolsVisible
         }
 
-        with(toolsList[SIZE_VIEW]){
+        with(toolsList[SIZE_VIEW]) {
             render(viewState.sizeList)
             isVisible = viewState.isBrushSizeChangerVisible
         }

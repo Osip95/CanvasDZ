@@ -21,7 +21,8 @@ class DrawView @JvmOverloads constructor(  //кастомная вью, анот
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
 
-    private var drawColor = ResourcesCompat.getColor(resources, COLOR.BLACK.value, null)// цвет из ресурсов
+    private var drawColor =
+        ResourcesCompat.getColor(resources, COLOR.BLACK.value, null)// цвет из ресурсов
 
     private var path = Path() // путь - набор векторов
     private var motionTouchEventX = 0f // координаты нажатия
@@ -40,7 +41,8 @@ class DrawView @JvmOverloads constructor(  //кастомная вью, анот
     // Painting Settings
     private val paint = Paint().apply {//настройки линии
         color = drawColor
-        isAntiAlias = true // Smooths out edges of what is drawn without affecting shape. сглаживание
+        isAntiAlias =
+            true // Smooths out edges of what is drawn without affecting shape. сглаживание
         isDither =
             true // Dithering affects how colors with higher-precision than the device are down-sampled.
         style = Paint.Style.STROKE // default: FILL как будет выгледеть линия

@@ -29,14 +29,13 @@ fun colorAdapterDelegate(
 
 fun sizeChangeAdapterDelegate(
     onSizeClick: (Int) -> Unit
-): AdapterDelegate<List<Item>> = adapterDelegateLayoutContainer<ToolItem.SizeModel,Item>(
+): AdapterDelegate<List<Item>> = adapterDelegateLayoutContainer<ToolItem.SizeModel, Item>(
     R.layout.item_size
-){
+) {
 
     val tvSize: TextView = findViewById(R.id.tvSizeText)
     bind { list ->
-      tvSize.text = item.size.value.toString()
-
+        tvSize.text = item.size.value.toString()
         itemView.setOnClickListener {
             onSizeClick(adapterPosition)
         }
@@ -54,20 +53,15 @@ fun toolsAdapterDelegate(
 
     bind { list ->
         ivTool.setImageResource(item.type.value)
-
         if (tvToolsText.visibility == View.VISIBLE) {
             tvToolsText.visibility = View.GONE
         }
-
         when (item.type) {
 
-           TOOLS.SIZE -> {
-               tvToolsText.visibility = View.VISIBLE
-               tvToolsText.text = item.selectedSize.value.toString()
-
-
-           }
-
+            TOOLS.SIZE -> {
+                tvToolsText.visibility = View.VISIBLE
+                tvToolsText.text = item.selectedSize.value.toString()
+            }
 
             TOOLS.PALETTE -> {
                 ivTool.setColorFilter(

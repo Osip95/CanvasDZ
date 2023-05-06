@@ -38,22 +38,24 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                             isBrushSizeChangerVisible = false
                         )
                     }
+
                     TOOLS.SIZE.ordinal -> {
                         return previousState.copy(
                             isBrushSizeChangerVisible = !previousState.isBrushSizeChangerVisible,
                             isPaletteVisible = false
-                            )
+                        )
                     }
 
                     else -> { // если нажали на кнопку которая не подразумевает появление другой плашки
 
-                        val toolsList = previousState.toolsList.mapIndexed() { index, model -> // преобразовываем лист инструментов,
-                            if (index == event.index) { // в лист с измененым флагом нажатия на нужном элементе. Флаг нажатия внутри в ToolModel
-                                model.copy(isSelected = true)
-                            } else {
-                                model.copy(isSelected = false)
+                        val toolsList =
+                            previousState.toolsList.mapIndexed() { index, model -> // преобразовываем лист инструментов,
+                                if (index == event.index) { // в лист с измененым флагом нажатия на нужном элементе. Флаг нажатия внутри в ToolModel
+                                    model.copy(isSelected = true)
+                                } else {
+                                    model.copy(isSelected = false)
+                                }
                             }
-                        }
 
                         return previousState.copy(
                             toolsList = toolsList, // возвращаем лист с выделенным элементом
@@ -64,15 +66,17 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
             }
 
             is UiEvent.OnPaletteClicked -> { // обработка нажатия на конкретный цвет
-                val selectedColor = COLOR.values()[event.index] // выбранный цвет, берем по индексу из енама
+                val selectedColor =
+                    COLOR.values()[event.index] // выбранный цвет, берем по индексу из енама
 
-                val toolsList = previousState.toolsList.map {// меняем нижнию плашку, перекрашивая модельку в соответсвии
-                    if (it.type == TOOLS.PALETTE) { //с выбранным цветом в верхней плашке
-                        it.copy(selectedColor = selectedColor)
-                    } else {
-                        it
+                val toolsList =
+                    previousState.toolsList.map {// меняем нижнию плашку, перекрашивая модельку в соответсвии
+                        if (it.type == TOOLS.PALETTE) { //с выбранным цветом в верхней плашке
+                            it.copy(selectedColor = selectedColor)
+                        } else {
+                            it
+                        }
                     }
-                }
 
                 return previousState.copy(
                     toolsList = toolsList,
@@ -84,7 +88,7 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                 val selectedSize = SIZE.values()[event.index]
 
                 val toolsList = previousState.toolsList.map {
-                    if(it.type == TOOLS.SIZE){
+                    if (it.type == TOOLS.SIZE) {
                         it.copy(selectedSize = selectedSize)
                     } else {
                         it

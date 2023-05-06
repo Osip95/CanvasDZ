@@ -24,7 +24,7 @@ class ToolsLayout @JvmOverloads constructor(  //кастомная вью, па�
         toolsAdapterDelegate {
             onClick(it)
         },
-        sizeChangeAdapterDelegate{
+        sizeChangeAdapterDelegate {
             onClick(it)
         }
     )
@@ -32,7 +32,11 @@ class ToolsLayout @JvmOverloads constructor(  //кастомная вью, па�
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
-        toolsList.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false) // устанавливаем горизонтпльное направление элементов и реверс
+        toolsList.layoutManager = LinearLayoutManager(
+            context,
+            RecyclerView.HORIZONTAL,
+            false
+        ) // устанавливаем горизонтпльное направление элементов и реверс
         toolsList.setAdapterAndCleanupOnDetachFromWindow(adapterDelegate) // через функцию расширения устанавливаем адаптер
     }
 
