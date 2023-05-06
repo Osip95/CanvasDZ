@@ -36,6 +36,7 @@ fun sizeChangeAdapterDelegate(
     val tvSize: TextView = findViewById(R.id.tvSizeText)
     bind { list ->
       tvSize.text = item.size.value.toString()
+
         itemView.setOnClickListener {
             onSizeClick(adapterPosition)
         }

@@ -33,10 +33,16 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
             is UiEvent.OnToolsClick -> { // обработка нажатия на элемент панели инструментов
                 when (event.index) { // индекс нажатого элемента. т.к. index соотоветствует порядку перечесления в енаме TOOLS,
                     TOOLS.PALETTE.ordinal -> { //то сравниваем с порядковым номером кнопки отвечающей за выбор цвета
-                        return previousState.copy(isPaletteVisible = !previousState.isPaletteVisible)
+                        return previousState.copy(
+                            isPaletteVisible = !previousState.isPaletteVisible,
+                            isBrushSizeChangerVisible = false
+                        )
                     }
                     TOOLS.SIZE.ordinal -> {
-                        return previousState.copy(isBrushSizeChangerVisible = !previousState.isBrushSizeChangerVisible)
+                        return previousState.copy(
+                            isBrushSizeChangerVisible = !previousState.isBrushSizeChangerVisible,
+                            isPaletteVisible = false
+                            )
                     }
 
                     else -> { // если нажали на кнопку которая не подразумевает появление другой плашки
@@ -72,6 +78,24 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                     toolsList = toolsList,
                     canvasViewState = previousState.canvasViewState.copy(color = selectedColor)
                 )
+            }
+
+            is UiEvent.OnSizeClick -> {
+                val selectedSize = SIZE.values()[event.index]
+
+                val toolsList = previousState.toolsList.map {
+                    if(it.type == TOOLS.SIZE){
+                        it.copy(selectedSize = selectedSize)
+                    } else {
+                        it
+                    }
+                }
+
+                return previousState.copy(
+                    toolsList = toolsList,
+                    canvasViewState = previousState.canvasViewState.copy(size = selectedSize)
+                )
+
             }
 
             is DataEvent.OnSetDefaultTools -> { // установка дефолтных значений

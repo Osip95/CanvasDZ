@@ -41,6 +41,10 @@ class MainActivity : AppCompatActivity() {
         ivTools.setOnClickListener {
             viewModel.processUiEvent(UiEvent.OnToolbarClicked)
         }
+
+        sizeLayout.setOnClickListener {
+            viewModel.processUiEvent(UiEvent.OnSizeClick(it))
+        }
     }
 
     private fun render(viewState: ViewState) {
