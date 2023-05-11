@@ -26,7 +26,8 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
             is UiEvent.OnToolbarClicked -> { // обработка нажатия на кисточку
                 return previousState.copy(
                     isToolsVisible = !previousState.isToolsVisible,
-                    isPaletteVisible = false
+                    isPaletteVisible = false,
+                    isBrushSizeChangerVisible = false
                 )
             }
 
