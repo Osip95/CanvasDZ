@@ -17,7 +17,7 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
         )
 
     init { // при инициализации вьюмодели устанавливаем дефолтные значения: выбора первого инструмента и  выбор черного цвета
-        processDataEvent(DataEvent.OnSetDefaultTools(tool = TOOLS.NORMAL, color = COLOR.BLACK))
+        processDataEvent(DataEvent.OnSetDefaultTools(tool = TOOLS.NORMAL, color = COLOR.BLACK, size = SIZE.MEDIUM))
     }
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
@@ -106,9 +106,9 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
             is DataEvent.OnSetDefaultTools -> { // установка дефолтных значений
                 val toolsList = previousState.toolsList.map { model ->
                     if (model.type == event.tool) {
-                        model.copy(isSelected = true, selectedColor = event.color)
+                        model.copy(isSelected = true, selectedColor = event.color, selectedSize = event.size)
                     } else {
-                        model.copy(isSelected = false)
+                        model.copy(isSelected = false, selectedSize = event.size )
                     }
                 }
 

@@ -18,5 +18,5 @@ sealed class UiEvent : Event {
 }
 
 sealed class DataEvent : Event {
-    data class OnSetDefaultTools(val tool: TOOLS, val color: COLOR) : DataEvent()
+    data class OnSetDefaultTools(val tool: TOOLS, val color: COLOR, val size: SIZE) : DataEvent()
 }
